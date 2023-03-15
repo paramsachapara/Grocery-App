@@ -1,0 +1,42 @@
+.hey{
+  background-color: green;
+}
+.form-select{
+  width: 25px;
+}
+/* .badge
+{padding: 0 3px;
+background-color: #5C3996;
+color: black;
+font-size: 1.2rem;
+ font-weight: bold;
+ border-radius: 5px;
+position: relative;
+top: -70px;
+right: -50px;
+width: 0.7rem;} */
+.catagory_dropDown,.search_bar{
+  border: none;
+  background-color: lightgray;
+  border-radius: 0 !important;
+}
+.upper_headerBorder{
+  border-bottom: 1px solid lightgray;
+}
+img{
+  margin-left:  2% !important;
+}
+.select:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+#header-wrap {
+    position: sticky !important;
+    top: 0;
+    left: 0;
+    height: auto !important;
+    width: 100% !important;
+    z-index: 100 !important;
+    background-color: white !important;
+
+}

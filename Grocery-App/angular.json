@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Grocery-App": {
+    "grocery-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -25,9 +25,19 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "node_modules/slick-carousel/slick/slick.scss",
+             "node_modules/slick-carousel/slick/slick-theme.scss"
             ],
-            "scripts": []
+
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/slick-carousel/slick/slick.min.js" 
+            ]
           },
           "configurations": {
             "production": {
@@ -60,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Grocery-App:build:production"
+              "browserTarget": "grocery-app:build:production"
             },
             "development": {
-              "browserTarget": "Grocery-App:build:development"
+              "browserTarget": "grocery-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Grocery-App:build"
+            "browserTarget": "grocery-app:build"
           }
         },
         "test": {
@@ -87,9 +97,19 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "node_modules/slick-carousel/slick/slick.scss",
+             "node_modules/slick-carousel/slick/slick-theme.scss"
             ],
-            "scripts": []
+
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/slick-carousel/slick/slick.min.js"
+            ]
           }
         }
       }

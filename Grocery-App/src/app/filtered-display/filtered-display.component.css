@@ -1,0 +1,59 @@
+*{
+  margin-top: 50px;
+}
+.half-a-border-on-top {
+  border-bottom: 1px solid;
+  border-image: linear-gradient(to right, #35662a 5%, transparent 2%) 100% 1;
+}
+.column{
+  width: 207px;
+  height: 335px;
+  margin-top: 50px;
+}
+.box{
+  display: flex;
+  width: 207px;
+  height: 90px;
+}
+.price{
+  text-decoration: line-through;
+  margin-left: 5px;
+}
+.discount-price{
+  color: #3BB77E;
+  font-weight: 500;
+
+}
+.main-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.description{
+  margin: 0;
+  padding: 0;
+}
+.image img{
+  margin: 0;
+  padding: 0;
+  background-color: #93f0c5;
+}
+.image{
+  margin: 0;
+  padding: 0;
+}
+h4,h5{
+  margin: 0;
+  padding: 0;
+}
+.price-section{
+  margin: 0;
+  padding: 0;
+  margin-top: 5px;
+  bottom: 0;
+}
+.box{
+  margin-bottom:2 ;
+
+
+}

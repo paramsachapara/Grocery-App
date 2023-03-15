@@ -1,0 +1,29 @@
+import { Component } from '@angular/core';
+import { AllItemService } from '../service/all-item.service';
+
+@Component({
+  selector: 'app-explore-category',
+  templateUrl: './explore-category.component.html',
+  styleUrls: ['./explore-category.component.css']
+})
+export class ExploreCategoryComponent {
+
+constructor(private service:AllItemService){
+
+}
+
+  categories = this.service.category_name;
+
+  total_category=[
+    {id:1,path:"../assets/apple.png",category:"All",quantity:"20" },
+    {id:2,path:"../assets/carot.png",category:"vegetable",quantity:"20"},
+    {id:3,path:"../assets/oranges.png",category:"fruit",quantity:"20" },
+    {id:4,path:"../assets/palak.png",category:"Coffee&Tea",quantity:"20" },
+    {id:4,path:"../assets/palak.png",category:"Meat",quantity:"20" }
+  ]
+
+  item_list=this.service.item_list
+  slideConfig = {"slidesToShow": 4, "slidesToScroll": 1};
+
+  
+}

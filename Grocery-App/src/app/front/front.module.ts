@@ -4,11 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FrontRoutingModule } from './front-routing.module';
 
 
-
 @NgModule({
-  declarations: [
-    
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     FrontRoutingModule
