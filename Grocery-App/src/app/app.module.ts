@@ -3,21 +3,26 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { HomepageGraphicsComponent } from './homepage-graphics/homepage-graphics.component';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
-import { FooterComponent } from './footer/footer.component';
-import { ExploreCategoryComponent } from './explore-category/explore-category.component';
-import { FeaturedProductComponent } from './featured-product/featured-product.component';
-import { FilteredDisplayComponent } from './filtered-display/filtered-display.component';
+import { HeaderComponent } from './layout/header/header.component';
+// import { HomepageGraphicsComponent } from './homepage-graphics/homepage-graphics.component';
+import { ExploreCategoryComponent } from './shared/component/explore-category/explore-category.component';
 
-import { CorouselComponent } from './corousel/corousel.component';
-import { ProductCarouselComponent } from './product-carousel/product-carousel.component';
-import { NgbRatingModule  } from '@ng-bootstrap/ng-bootstrap';
-import { HomeComponent } from './home/home.component';
-import { CatalougeModule } from './front/catalouge/catalouge.module';
-import { FrontModule } from './front/front.module';
-import { UserModule } from './front/user/user.module';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { FooterComponent } from './layout/footer/footer.component';
+
+
+import { NgbRatingModule, NgbModule  } from '@ng-bootstrap/ng-bootstrap';
+import { HomeComponent } from './shared/component/home/home.component';
+// import { CatalougeModule } from './modules/front/catalouge/catalouge.module';
+import { FrontModule } from './modules/front/front.module';
+import { UserModule } from './modules/front/user/user.module';
+import { OrderPlacedComponent } from './modules/front/order-placed/order-placed.component';
+import { HomepageGraphicsComponent } from './shared/component/homepage-graphics/homepage-graphics.component';
+import { FeaturedProductComponent } from './shared/component/featured-product/featured-product.component';
+import { FilteredDisplayComponent } from './shared/component/filtered-display/filtered-display.component';
+import { ProductCarouselComponent } from './shared/component/product-carousel/product-carousel.component';
+import { CheckoutComponent } from './modules/front/checkout/checkout.component';
+import { CatalougeModule } from './modules/front/catalouge/catalouge.module';
 
 
 
@@ -28,15 +33,18 @@ import { UserModule } from './front/user/user.module';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+   HomeComponent,
     HomepageGraphicsComponent,
     FooterComponent,
     ExploreCategoryComponent,
     FeaturedProductComponent,
     FilteredDisplayComponent,
-    CorouselComponent,
-    ProductCarouselComponent,
+    // // CorouselComponent,
+    HeaderComponent,
     HomeComponent,
+   CheckoutComponent,
+    OrderPlacedComponent,
+    ProductCarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -46,12 +54,7 @@ import { UserModule } from './front/user/user.module';
     CatalougeModule,
     FrontModule,
     UserModule,
-
-
-
-
-
-
+    NgbModule
 
 
   ],

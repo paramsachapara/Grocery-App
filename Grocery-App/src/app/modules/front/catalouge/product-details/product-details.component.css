@@ -1,0 +1,30 @@
+.upper_image {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+/* Centered text */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+}
+.mainContainer{
+  width: 80%;
+}
+.imageBackground{
+  height: 20rem;
+  width: 20rem;
+
+}
+#productImage{
+  height: 20rem !important;
+  width: 20rem !important;
+}
+#details{
+  height: 20rem;
+  width: 20rem;
+  
+}

@@ -1,0 +1,62 @@
+<br />
+<div class="container upper_image">
+  <img src="../../../../assets/fruits&veg.png" alt="Snow" style="width: 100%" />
+
+  <div class="centered">
+    <b>
+      <h1>My Cart</h1>
+    </b>
+  </div>
+</div>
+
+<div class="container ">
+<table class="table ">
+  <thead class=" thead table-dark">
+    <tr>
+      <th scope="col">ITEM DESCRIPTION</th>
+      <th scope="col">UNIT PRICE</th>
+      <th scope="col">QUANTITY</th>
+      <th scope="col">SUBTOTAL</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let category of productsByCategory | keyvalue">
+
+  <tr class="table-secondary">
+    <td  colspan="5"><pre>{{category.key }}  item:rs price  162</pre></td>
+  </tr>
+    <tr *ngFor="let product of category.value">
+
+      <td >
+        <div class="row m-0 p-0">
+          {{product.seller}}
+        </div>
+        <div class="row m-0 p-0">
+          <b> {{product.groceryName}}</b>
+        </div>
+      </td>
+      <td>
+        <div class="row m-0 p-0">
+          <b>{{product.price| currency}} </b>
+        </div>
+        <div class="row m-0 p-0">
+         <s>100</s>
+        </div>
+      </td>
+      <td>
+        <div>
+          <button (click)="decreaseCount(product.id)">-</button> <span class="">{{product.quantityCount}}</span>
+          <button (click)="inceraseCount(product.id)">+</button>
+        </div>
+      </td>
+      <td>{{product.subtotal}}</td>
+      <td><i class="fa fa-solid fa-xmark"></i></td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+<button routerLink="checkout">checkout</button>
+
+

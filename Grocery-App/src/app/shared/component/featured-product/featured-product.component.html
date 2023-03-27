@@ -1,0 +1,39 @@
+<br>
+<div class="container d-flex justify-content-between category_div" >
+  <div>
+    <h2 class="explore_category_text"><b> Feature Category</b></h2>
+  </div>
+  <div class="d-flex ">
+    <a *ngFor="let i of categories" class="category_menu_in_home mx-1" [routerLink]="['category/',i]">{{i}}</a>
+
+  </div>
+  </div>
+
+
+<div class="container-fluid d-flex align-items-center">
+  <ngx-slick-carousel class="carousel"
+  #slickModal="slick-carousel"
+  [config]="slideConfig"
+  (init)="slickInit()"
+  (breakpoint)="breakpoint()" >
+  <div ngxSlickItem class="slide d-flex justify-content-center align-items-center"  *ngFor="let product of item_list">
+    <div class="card d-flex justify-content-center align-items-center m-0 p-0  " style="width: 90%; height:90%;;background-color:#FFF3FF;">
+    <img src="{{product.path}}" class="card-img-top " style="width:12rem; height:8rem" alt="">
+    <div class="card-body">
+        <span class="card-text category">{{product.category}}</span>
+        <h4>{{product.name}}</h4>
+        <span>☆☆☆☆☆(4)</span><br>
+        <span class="card-text storeName">By {{product.seller}}</span>
+        <div>
+            <span class="discountPrice card-text">{{product.discount| currency}}</span>
+            <span class="price card-text ms-1"><small><s>{{product.price | currency}}</s></small></span>
+            <button class="btn btn-success addToCart "(click)="pushToCartArray(product.id)"><i class="fa fa-shopping-cart "></i>Add</button>
+        </div>
+    </div>
+  </div>
+
+</div>
+</ngx-slick-carousel>
+
+</div>
+

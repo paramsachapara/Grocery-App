@@ -1,0 +1,27 @@
+<div class="container upper_image">
+  <img src="../../../../assets/fruits&veg.png" alt="Snow" style="width:100%;">
+
+  <div class="centered"><b><h1>Checkout</h1></b></div>
+</div>
+<br>
+<div class="d-flex justify-content-center">
+<div >
+<p class=" text-muted">Select delivery address</p>
+<div class="form-check d-flex justify-content-left " *ngFor="let address of address">
+  <input class="form-check-input d-flex align-content-center mt-3 " type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+  <label class="form-check-label ms-2" for="flexRadioDefault1" style="width: 50%;">
+    {{address}}
+  </label>
+</div>
+<br><br>
+<pre class="d-flex justify-content-left">By placing order you agree
+ to terms and condition
+</pre>
+<p>Payment mode: Cash on Delivery
+</p>
+<p>Grand total:</p>
+<button class="btn btn-secondary rounded-5">cancle</button>
+<button routerLink="placeOrder" class="btn btn-success rounded-5 ms-2">Place an order</button>
+
+</div>
+</div>>

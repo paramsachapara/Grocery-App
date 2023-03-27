@@ -1,0 +1,30 @@
+<br>
+<div class="container d-flex justify-content-between category_div" >
+<div>
+  <h2 class="explore_category_text"><b> Explore Category</b></h2>
+</div>
+<div class="d-flex ">
+  <a *ngFor="let i of categories" class="category_menu_in_home mx-1" [routerLink]="['category/',i]">{{i}}</a>
+
+</div>
+</div>
+
+<div class="container-fluid d-flex align-items-center">
+  <ngx-slick-carousel class="carousel"
+  #slickModal="slick-carousel"
+  [config]="slideConfig"
+  (init)="slickInit()"
+  (breakpoint)="breakpoint()" >
+  <div ngxSlickItem *ngFor="let item of total_category" [routerLink]="['category',item.category]"class="slide  d-flex align-item-center justify-content-center" >
+    <div  class="card  d-flex"  style="width:12rem; height:auto;background-color: #FEEFEA;" >
+      <img src={{item.path}} class="card-img-top "  style="width:10rem; height:10rem;margin:auto" alt={{item.path}}>
+      <div class="card-body">
+        <h5>{{item.category}}</h5>
+          <span>{{item.quantity}} Items</span>
+      </div>
+    </div>
+
+  </div>
+</ngx-slick-carousel>
+
+</div>

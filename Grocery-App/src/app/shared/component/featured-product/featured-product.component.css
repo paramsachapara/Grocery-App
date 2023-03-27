@@ -1,0 +1,16 @@
+.category_menu_in_home {
+  text-decoration: none !important;
+  color: black !important;
+}
+.custom-slick-prev:before, .custom-slick-next:before {
+  display: inline-block;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  font-size: 26px;
+  content: '\f053'; /* Previous Icon */
+}
+
+.custom-slick-next:before {
+  content: '\f054'; /* Next Icon */
+}
+

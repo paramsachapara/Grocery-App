@@ -1,0 +1,104 @@
+<div class="container-fluid" id="header-wrap">
+  <div class="container">
+    <div class="row p-1 upper_header align-items-center">
+      <div class="col-md-3 row">
+        <div class="col-md-1">
+          <a class="navbar-brand" href="#">
+            <img
+              src="../assets/logo.png"
+              height="30"
+              alt=" Logo"
+              loading="lazy"
+            />
+          </a>
+        </div>
+        <div class="col-md-11">
+          <a class="navbar-brand" href="#">
+            <img
+              src="../assets/Frame 1.png"
+              height="30"
+              alt=" Logo"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </div>
+      <!-- select and search bar i.e. second column in this row -->
+      <div class="col-md-5">
+        <div class="row">
+          <form class="d-flex input-group w-s">
+            <select
+              class="form-select col-md-4 catagory_dropDown btn-block select"
+              aria-label="Default select example"
+            >
+              <option selected value="All">All category</option>
+              <option value="fruit">Fruit</option>
+              <option value="vegetable">Vegetables</option>
+              <option value="tea&coffee">tea&coffee</option>
+              <option value="meat">Meat</option>
+            </select>
+
+            <div class="col-md-7">
+              <span><i class="fa-thin fa-pipe"></i></span>
+              <input
+                type="search"
+                class="form-control search_bar"
+                placeholder="Search"
+                aria-label="Search"
+                aria-describedby="search-addon"
+              />
+            </div>
+            <span
+              class="input-group-text border-0 hey col-sm-1"
+              id="search-addon"
+              >
+              <i class="fas fa-search"></i>
+            </span>
+          </form>
+        </div>
+      </div>
+<!-- my cart -->
+      <div routerLink="cart" class="col-md-2 d-flex text-center justify-content-center align-items-center">
+        <i class="fas fa-shopping-cart fa-2x position-relative me-3">
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success "style="width: 1.5rem;height:1rem; font-size: 10px;">
+            +{{cartSize}} <span class="visually-hidden">unread messages</span>
+          </span>
+        </i>
+
+        <div>
+          <div>My cart</div>
+          <div class="">$21</div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div>
+          <p>
+            Param Sachapara
+            <span class="" id="chevron-addon">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid upper_headerBorder"></div>
+  <!-- lower header -->
+  <div class="container lower_header">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <button type="btn" class="btn btn-success">
+          Brows all Category
+        </button>
+      </div>
+      <div>
+        <p>
+          <i class="fa-solid fa-phone"></i>
+
+          <span>7046662685 </span>
+          support center
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
