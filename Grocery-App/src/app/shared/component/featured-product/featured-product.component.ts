@@ -50,12 +50,16 @@ ngOnInit() {
     objectToPush.imageURL=addedObject?.path;
     objectToPush.seller=addedObject?.seller;
 
+
+
     // if object already in cartData then increase its quantity
     // idExists = products.some(product => product.id === idToCheck);
     let alreadyData=this.cartData.find((x: { id: number | undefined; }) =>x.id== objectToPush.id)
       if(alreadyData){
         alreadyData.quantityCount+=1;
-        console.error("total count",alreadyData.quantityCount);
+        alreadyData.subtotal=alreadyData.price*alreadyData.quantityCount;
+        console.log(this.cartData);
+
       }else{
         this.cartData.push(objectToPush);
 

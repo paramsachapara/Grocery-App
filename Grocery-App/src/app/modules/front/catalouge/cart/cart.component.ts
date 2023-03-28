@@ -34,12 +34,12 @@ export class CartComponent implements OnInit{
   }, {});
   console.warn(this.productsByCategory)
 
-  //total
-  this.total = this.cartarray.reduce((acc: { [x: string]: number }, product: { category: string | number, price: number }) => {
+  //total not working
+  this.total = this.cartarray.reduce((acc: { [x: string]: number }, product: { category: string | number, price: number,quantityCount:number }) => {
     if (!acc[product.category]) {
         acc[product.category] = 0;
     }
-    acc[product.category] += product.price;
+    acc[product.category] += product.price*product.quantityCount;
     return acc;
 }, {});
 console.log("total", this.total);
@@ -80,7 +80,7 @@ console.log("total", this.total);
       itemToDecrease.quantityCount=0;
       itemToDecrease.subtotal=0
     }
-    debugger
+
     itemToDecrease.subtotal= itemToDecrease.quantityCount*itemToDecrease.price;
    }
 
