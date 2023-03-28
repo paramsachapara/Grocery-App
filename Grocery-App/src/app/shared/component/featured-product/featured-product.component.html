@@ -18,7 +18,7 @@
   (breakpoint)="breakpoint()" >
   <div ngxSlickItem class="slide d-flex justify-content-center align-items-center"  *ngFor="let product of item_list">
     <div class="card d-flex justify-content-center align-items-center m-0 p-0  " style="width: 90%; height:90%;;background-color:#FFF3FF;">
-    <img src="{{product.path}}" class="card-img-top " style="width:12rem; height:8rem" alt="">
+    <img src="{{product.path}}" routerLink="" class="card-img-top " style="width:12rem; height:8rem" alt="">
     <div class="card-body">
         <span class="card-text category">{{product.category}}</span>
         <h4>{{product.name}}</h4>

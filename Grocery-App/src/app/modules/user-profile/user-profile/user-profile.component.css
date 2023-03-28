@@ -1,0 +1,26 @@
+.upper_image {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+/* Centered text */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-left: 0;
+}
+a{
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: black;
+    width: fit-content;
+}

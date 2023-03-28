@@ -12,6 +12,7 @@ export class CartComponent implements OnInit{
   constructor(private cartService:CartService){
 
   }
+
   ngOnInit() {
     this.cartService.mycart.subscribe((res)=>{
       this.cartarray=res;
@@ -33,6 +34,16 @@ export class CartComponent implements OnInit{
   }, {});
   console.warn(this.productsByCategory)
 
+  //total
+  this.total = this.cartarray.reduce((acc: { [x: string]: number }, product: { category: string | number, price: number }) => {
+    if (!acc[product.category]) {
+        acc[product.category] = 0;
+    }
+    acc[product.category] += product.price;
+    return acc;
+}, {});
+console.log("total", this.total);
+
   }
 
   //DECLARED VARIABLE
@@ -40,6 +51,7 @@ export class CartComponent implements OnInit{
   productCount:any=1;
   productTotalPrice: number|undefined;
   productsByCategory: { [category: string]: cartItems[]; } | undefined;
+  total:any;
 
   // CODE BY SYSTEM ITSELF
   private _cartarray: any;
