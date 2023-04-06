@@ -1,1 +1,108 @@
-<p>registration works!</p>
+<div class="d-flex justify-content-center align-items-center">
+  <div class="container border d-block" style="width: 500px">
+    <div class="row centered-form">
+      <div class="col-xs-12 col-sm-8 col-md-12 col-sm-offset-2 col-md-offset-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Please sign up</h3>
+          </div>
+          <div class="panel-body">
+            <form [formGroup]="registrationForm">
+              <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      [class.is-invalid]="this.registrationForm.get('first_name')?.invalid && this.registrationForm.get('first_name')?.touched " formControlName="first_name"
+                      name="firstName"
+                      id="firstName"
+                      class="form-control input-sm"
+                      placeholder="First Name"
+                    />
+                  </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      [class.is-invalid]="this.registrationForm.get('last_name')?.invalid && this.registrationForm.get('last_name')?.touched " formControlName="last_name"
+                      name="lastName"
+                      id="lastName"
+                      class="form-control input-sm"
+                      placeholder="Last Name"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      [class.is-invalid]="this.registrationForm.get('primary_email')?.invalid && this.registrationForm.get('primary_email')?.touched " formControlName="primary_email"
+                      name="email"
+                      id="email"
+                      class="form-control input-sm"
+                      placeholder="Email"
+                    />
+                  </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      name="userName"
+                      [class.is-invalid]="this.registrationForm.get('username')?.invalid && this.registrationForm.get('username')?.touched " formControlName="username"
+                      name="email"
+                      id="userNamw"
+                      class="form-control input-sm"
+                      placeholder="User Name"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <input
+                      type="password"
+                      [class.is-invalid]="this.registrationForm.get('password')?.invalid && this.registrationForm.get('password')?.touched " formControlName="password"
+                      name="email"
+                      name="password"
+                      id="password"
+                      class="form-control input-sm"
+                      placeholder="Password"
+                    />
+                  </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <input
+                      type="tel"
+                      [class.is-invalid]="this.registrationForm.get('primary_mobile_number')?.invalid && this.registrationForm.get('primary_mobile_number')?.touched " formControlName="primary_mobile_number"
+                      name="email"
+                      name="contactNumber"
+                      id="contactNumber"
+                      class="form-control input-sm"
+                      placeholder="contact Number"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <button
+
+                (click)="getRegistered()"
+                value="Register"
+                class="btn btn-info btn-block">
+                Submit
+                </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

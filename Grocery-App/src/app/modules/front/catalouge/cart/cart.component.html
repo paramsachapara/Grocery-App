@@ -20,12 +20,12 @@
       <th scope="col"></th>
     </tr>
   </thead>
-  <tbody *ngFor="let category of productsByCategory | keyvalue">
+  <tbody *ngFor="let category of itemsByCategories | keyvalue">
 
   <tr class="table-secondary">
-    <td  colspan="5"><pre>{{category.key }}  item:rs price  162</pre></td>
+    <td  colspan="5"><pre>{{category.key }}  item:rs {{category.value.total}}</pre></td>
   </tr>
-    <tr *ngFor="let product of category.value">
+    <tr *ngFor="let product of category.value.items">
 
       <td >
         <div class="row m-0 p-0">
@@ -50,13 +50,25 @@
         </div>
       </td>
       <td>{{product.subtotal}}</td>
-      <td><i class="fa fa-solid fa-xmark"></i></td>
+      <td><i (click)="removeItem(product.id)" class="fa fa-solid fa-xmark"></i></td>
     </tr>
 
   </tbody>
 </table>
 
 
-<button routerLink="checkout">checkout</button>
-
-
+<div class="d-flex">
+  <div class="d-flex-row justify-content-between">
+  <h5>subTotal:</h5>
+  <h5>Tax:</h5>
+  <h5>DIscount</h5>
+  <h5>Total:</h5>
+</div>
+<div class="d-flex-column justify-content-between">
+  <h4>Rs.{{totalPrice}}</h4>
+  <h4>Rs.{{taxAmount}}</h4>
+  <h4>Rs.{{discountAmount}}</h4>
+  <h3>Rs.{{grandTotal}}</h3>
+  </div>
+</div>
+<button (click)=checkout() *ngIf="grandTotal && grandTotal>0" routerLink="checkout">checkout</button>

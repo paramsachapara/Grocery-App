@@ -3,7 +3,7 @@
 <div class="container upper_image">
   <img src="../../../../assets/fruits&veg.png" alt="Snow" style="width:100%;">
 
-  <div class="centered"><b><h1>{{category}}</h1></b></div>
+  <div class="centered"><b><h1>{{groceryCategorySlug}}</h1></b></div>
 </div>
 <br>
 <div class="container text-right d-flex justify-content-end" style="color:black;font-size: 30px;">
@@ -25,16 +25,16 @@
 
   <div class="container ind">
     <div class="card " *ngFor="let product of newDisplay">
-      <img [routerLink]="['product',product.id]" src="{{product.path}}" class="card-img-top image" alt="">
-      <div class="card-body">
+      <img [routerLink]="['product',product.id]" src="{{product.avatar_image}}" class="card-img-top image" alt="">
+      <div   class="card-body">
           <span class="card-text category">{{product.category}}</span>
-          <h4>{{product.name}}</h4>
+          <h4>{{product.title}}</h4>
           <span>☆☆☆☆☆(4)</span>
-          <span class="card-text storeName">By {{product.seller}}</span>
+          <!-- <span class="card-text storeName">By {{product.seller}}</span> -->
           <div>
-              <span class="discountPrice card-text">{{product.discount| currency}}</span>
-              <span class="price card-text">{{product.price | currency}}</span>
-              <button class="btn  addToCart "><i class="fa fa-shopping-cart "></i>Add</button>
+              <!-- <span class="discountPrice card-text">{{product.discount| currency}}</span> -->
+              <span class="price card-text">{{product.amount | currency}}</span>
+              <button class="btn btn-success addToCart" (click)="add(product.id)"><i class="fa fa-shopping-cart "></i>Add</button>
           </div>
       </div>
   </div>

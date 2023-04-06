@@ -26,7 +26,7 @@ export class ProductDetailsComponent implements OnInit
      this.productSeller=this.productDetails[0].seller;
      this.productPrice=this.productDetails[0].price;
      this.productTotalPrice=this.productPrice
-     console.log(this.productPrice)
+    //  console.log(this.productPrice)
 
 
  };
@@ -50,9 +50,14 @@ getProductDetails(){
       return value;
   }
 } )
-
-
 }
+
+//add product to cart
+ add(id:any){
+ this.service.pushToCartArray(id);
+ }
+
+
 //  increase && decrease product count
  inceraseCount(){
   this.productCount+=1;

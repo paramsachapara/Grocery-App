@@ -1,46 +1,51 @@
 
-<form class="row container">
+<form [formGroup]="profileForm" class="row container">
         <div class="col-md-10 mt-4 ms-5">
             <div class="d-flex justify-content-between mt-4">
                 <div class="form-group">
-                    <label for="firstName">First Name</label>
-                    <input class="form-control" type="text" name="firstName">
+                    <label for="first_name">First Name</label>
+                    <input class="form-control" [class.is-invalid]="this.profileForm.get('first_name')?.invalid && this.profileForm.get('first_name')?.touched" formControlName="first_name" type="text" name="firstName">
                 </div>
+
                 <div class="form-group">
-                    <label for="firstName">Last Name</label>
-                    <input class="form-control" type="text" name="firstName">
-                </div>
-            </div>
-            <div class="d-flex justify-content-between mt-4">
-                <div class="form-group">
-                    <label for="firstName">Email</label>
-                    <input class="form-control" type="text" name="firstName">
-                </div>
-                <div class="form-group">
-                    <label for="firstName">Contact Number</label>
-                    <input class="form-control" type="text" name="firstName">
+                    <label for="last_name">Last Name</label>
+                    <input class="form-control" [class.is-invalid]="this.profileForm.get('last_name')?.invalid && this.profileForm.get('last_name')?.touched" formControlName="last_name" type="text" name="lastName">
                 </div>
             </div>
             <div class="d-flex justify-content-between mt-4">
                 <div class="form-group">
-                    <label for="firstName">Alternate Contact Email</label>
-                    <input class="form-control" type="text" name="firstName">
+                    <label for="primary_email">Email</label>
+                    <input class="form-control" [class.is-invalid]="this.profileForm.get('primary_email')?.invalid && this.profileForm.get('primary_email')?.touched" formControlName="primary_email"  type="text" name="primary_email">
                 </div>
                 <div class="form-group">
-                    <label for="firstName">Alternate Contact Number</label>
-                    <input class="form-control" type="text" name="firstName">
+                    <label for="primary_mobile_number">Contact Number</label>
+                    <input class="form-control" [class.is-invalid]="this.profileForm.get('primary_mobile_number')?.invalid && this.profileForm.get('primary_mobile_number')?.touched" formControlName="primary_mobile_number" type="text" name="primary_mobile_number">
+                </div>
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+                <div class="form-group">
+                    <label for="secondary_email">Alternate Contact Email</label>
+                    <input class="form-control" [class.is-invalid]="this.profileForm.get('secondary_email')?.invalid && this.profileForm.get('secondary_email')?.touched" formControlName="secondary_email"  type="text" name="secondary_email">
+                </div>
+                <div class="form-group">
+                    <label for="secondary_mobile_number">Alternate Contact Number</label>
+                    <input class="form-control" [class.is-invalid]="this.profileForm.get('secondary_mobile_number')?.invalid && this.profileForm.get('secondary_mobile_number')?.touched" formControlName="secondary_mobile_number" type="text" name="secondary_mobile_number">
                 </div>
             </div>
         <div class="d-flex justify-content-between mt-4">
             <div class="form-group">
-                <label for="firstName">Date of Birth</label>
-                <input class="form-control" type="text" name="firstName">
+                <label for="date_of_birth">Date of Birth</label>
+                <input  class="form-control" [class.is-invalid]="this.profileForm.get('date_of_birth')?.invalid && this.profileForm.get('date_of_birth')?.touched" formControlName="date_of_birth" type="date" name="date_of_birth">
             </div>
+            <div class="form-group">
+              <label for="password">New Password</label>
+              <input class="form-control" [class.is-invalid]="this.profileForm.get('password')?.invalid && this.profileForm.get('password')?.touched" formControlName="password" type="text" name="password">
+          </div>
         </div>
     </div>
     <div class="col-md-1">
         <div class="form-group mt-4">
-            <button class="form-control btn btn-success">Save</button>
+            <button (click)="updateUser()" class="form-control btn btn-success">Save</button>
         </div>
     </div>
 </form>

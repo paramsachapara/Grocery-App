@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgbRatingConfig, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { AllItemService } from '../../service/all-item.service';
 import { CartService } from '../../service/cart.service';
-import { cartItems } from '../../../cartInterface';
+import { cartItems } from '../../models/cartInterface';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from '../../service/api.service';
 
 
 @Component({
@@ -11,64 +13,49 @@ import { cartItems } from '../../../cartInterface';
   styleUrls: ['./featured-product.component.css']
 })
 export class FeaturedProductComponent implements OnInit{
-  constructor(config: NgbRatingConfig, private items :AllItemService, private cartService:CartService) {
+  constructor(config: NgbRatingConfig, private items :AllItemService,private toastr: ToastrService,private api:ApiService) {
 		// customize default values of ratings used by this component tree
 		config.max = 5;
 		config.readonly = true;
-	}
-ngOnInit() {
 
+    //get all products
+    this.api.getAllProduct().subscribe({
+      next:(res:any)=>{
+      this.items.item_list=res.data
+      this.item_list=res.data
+      console.warn("all items",res);
+      console.log("dfghjkjhgfdfghjkjhgfdsdfghjkjhgfd",this.items.item_list);
 
-
-}
-
-  item_list = this.items.item_list;
-  categories = this.items.category_name
-  // this array is for cart data
-  cartData:any=[];
-  // funcition in called from html page button: Add to cart
-
-  pushToCartArray(id: number){
-    const addedObject = this.item_list.find(row => row.id == id);
-    let objectToPush:cartItems={
-      id: undefined,
-      groceryName: undefined,
-      price: undefined,
-      category:undefined,
-      quantity: undefined,
-      subtotal: undefined,
-      imageURL: undefined,
-      quantityCount: 1,
-      seller:undefined
-    };
-    objectToPush.id=addedObject?.id;
-    objectToPush.groceryName=addedObject?.name;
-    objectToPush.price=addedObject?.price;
-    objectToPush.category=addedObject?.category;
-    objectToPush.quantity=addedObject?.quantity;
-    objectToPush.subtotal=addedObject?.price;
-    objectToPush.imageURL=addedObject?.path;
-    objectToPush.seller=addedObject?.seller;
-
-
-
-    // if object already in cartData then increase its quantity
-    // idExists = products.some(product => product.id === idToCheck);
-    let alreadyData=this.cartData.find((x: { id: number | undefined; }) =>x.id== objectToPush.id)
-      if(alreadyData){
-        alreadyData.quantityCount+=1;
-        alreadyData.subtotal=alreadyData.price*alreadyData.quantityCount;
-        console.log(this.cartData);
-
-      }else{
-        this.cartData.push(objectToPush);
+      },
+      error:(err:any)=>{
 
       }
 
-    this.cartService.mycart.next(this.cartData)
-    // console.log("cartData fp",this.cartData);
-    }
 
+    })
+    //get all category
+    this.api.getAllCategory().subscribe({
+      next:(res:any)=>{
+        this.categories=res.data;
+
+      },
+      error:err=>{
+        console.log("all categories error",err)
+      }
+    })
+	}
+ngOnInit() {}
+
+  item_list:any
+  categories:any
+
+
+
+  // funcition in called from html page button: Add to cart
+add(id:number){
+  this.items.pushToCartArray(id)
+
+}
 
 
 

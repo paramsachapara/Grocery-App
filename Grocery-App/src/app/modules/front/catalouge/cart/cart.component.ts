@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs';
 
-import { cartItems } from 'src/app/cartInterface';
+import { cartItems } from 'src/app/shared/models/cartInterface';
 import { CartService } from 'src/app/shared/service/cart.service';
+// import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
@@ -9,79 +11,183 @@ import { CartService } from 'src/app/shared/service/cart.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit{
+  cartarray: any;
   constructor(private cartService:CartService){
 
   }
-
   ngOnInit() {
-    this.cartService.mycart.subscribe((res)=>{
-      this.cartarray=res;
-    })
+    this.cartData();
 
-  // storing all categories in cartCategory
-  this.cartCategory = this.cartarray
-  .map((product:any) => product.category)
-  .filter((category: any, index: any, categories: string | any[]) => categories.indexOf(category) === index);
-  console.warn("categories",this.cartCategory);
+    // LETS CREATE ARRAY FOR EVERY AVAILABLE CAREGORY
+    this.getItemsByCategory()
+    //  console.warn("::",this.itemsByCategories);
+    this.finalBill();
 
-  // LETS CREATE ARRAY FOR EVERY AVAILABLE CAREGORY
-  this.productsByCategory = this.cartarray.reduce((acc: { [x: string]: any[]; }, product: { category: string | number; }) => {
-    if (!acc[product.category]) {
-      acc[product.category] = [];
-    }
-    acc[product.category].push(product);
-    return acc;
-  }, {});
-  console.warn(this.productsByCategory)
+    //sending total price to behavioursubject
+    this.cartService.cartTotal.next(this.totalPrice)
 
-  //total not working
-  this.total = this.cartarray.reduce((acc: { [x: string]: number }, product: { category: string | number, price: number,quantityCount:number }) => {
-    if (!acc[product.category]) {
-        acc[product.category] = 0;
-    }
-    acc[product.category] += product.price*product.quantityCount;
-    return acc;
-}, {});
-console.log("total", this.total);
+    //getting all ordered items
+    this.getallorders();
 
   }
-
   //DECLARED VARIABLE
-  cartCategory:any;
-  productCount:any=1;
-  productTotalPrice: number|undefined;
-  productsByCategory: { [category: string]: cartItems[]; } | undefined;
+
+  itemsByCategories: { [key: string]: { items: any[], total: number } } = {};
   total:any;
+  categories:any = {};
+  totalPrice:number=0;
+  // taxAmount:number =100;
+  taxAmount:number=20;
+  discountAmount:number=10;
+  grandTotal:number|undefined;
+  allOrder:any;
 
-  // CODE BY SYSTEM ITSELF
-  private _cartarray: any;
-  public get cartarray(): any {
-    return this._cartarray;
+  cartData(){
+    //  this.cartService.mycart.subscribe((res)=>{
+    //   this.cartarray=res})
+
+      // data from local storage
+      if(localStorage.getItem('cartItems')!==null)
+
+     {
+      let localData=localStorage.getItem('cartItems')
+       this.cartarray=localData && JSON.parse(localData)
+      //  console.log("cart",this.cartarray);
+
+      }
+
+    }
+
+
+  getItemsByCategory() {
+    this.itemsByCategories = {};
+      this.cartarray.forEach((item:any) => {
+        if (!this.itemsByCategories.hasOwnProperty(item?.category)) {
+          this.itemsByCategories[item?.category] = { items: [item], total: item.subtotal };
+        } else {
+          this.itemsByCategories[item.category].items.push(item);
+          this.itemsByCategories[item.category].total += item.subtotal;
+        }
+      });
+    ;
   }
-  public set cartarray(value: any) {
-    this._cartarray = value;
+
+
+
+
+  findProductById(id:any){
+    return this.cartarray.find((x: { id: number | undefined; }) =>x.id== id)
   }
-
-
-
-
+  subTotal(numberOfItems:any,price:any)
+  {
+    return numberOfItems*price
+  }
   inceraseCount(id:any){
 
-    let itemToIncrease=this.cartarray.find((x: { id: number | undefined; }) =>x.id== id)
+    let itemToIncrease= this.findProductById(id)
     itemToIncrease.quantityCount+=1;
-    itemToIncrease.subtotal= itemToIncrease.quantityCount*itemToIncrease.price;
+    itemToIncrease.subtotal= this.subTotal(itemToIncrease.quantityCount,itemToIncrease.price)
+    // update data in local storage
+    localStorage.setItem("cartItems",JSON.stringify(this.cartarray))
+    this.getItemsByCategory()
+    this.finalBill()
   }
    decreaseCount(id:any){
-    let itemToDecrease=this.cartarray.find((x: { id: number | undefined; }) =>x.id== id)
-
+    let itemToDecrease=this.findProductById(id)
     if(itemToDecrease.quantityCount>0){
       itemToDecrease.quantityCount-=1;
     }else{
       itemToDecrease.quantityCount=0;
       itemToDecrease.subtotal=0
     }
-
-    itemToDecrease.subtotal= itemToDecrease.quantityCount*itemToDecrease.price;
+    itemToDecrease.subtotal= this.subTotal(itemToDecrease.quantityCount,itemToDecrease.price);
+    // updata in loalstorage
+    localStorage.setItem("cartItems",JSON.stringify(this.cartarray))
+    this.getItemsByCategory()
+    this.finalBill()
    }
 
+  finalBill(){
+
+    // let total = this.itemsByCategories.reduce()
+    this.totalPrice=0;
+    for(const category in this.itemsByCategories){
+    //  console.log("category for total", category);
+     this.totalPrice+= this.itemsByCategories[category].total;
+     }
+   this.grandTotal = this.taxAmount +this.totalPrice-this.discountAmount;
+   if(this.totalPrice==0){
+    this.grandTotal=0;
+    this.taxAmount=0;
+    this.discountAmount=0;
+    // this.getItemsByCategory()
+   }
+  }
+  removeItem(id:any){
+    if (this.cartarray){
+       this.cartarray=this.cartarray.filter((item:any)=>item.id!==id);
+
+       console.log(this.findProductById(id));
+localStorage.setItem("cartItems",JSON.stringify(this.cartarray))
+    this.getItemsByCategory()
+    this.finalBill()
+      }
+
+  }
+
+  getallorders()
+  {
+     const allItems = [];
+    for (let key in this.itemsByCategories) {
+      for (let i = 0; i < this.itemsByCategories[key].items.length; i++) {
+        allItems.push(this.itemsByCategories[key].items[i]);
+      }
+    }
+    const finalItems=[];
+    for(let i=0;i<allItems.length;i++){
+      finalItems.push({
+
+        product_id: allItems[i].id,
+        product_name:allItems[i].groceryName,
+        qty: allItems[i].quantityCount,
+        product_amount: allItems[i].price,
+        discount_type: 2,
+        discount_amount: allItems[i].discount
+      })
+    }
+    this.allOrder=finalItems;
+     console.log("fina products",finalItems);
+
+}
+
+
+date(){
+  let date=new Date()
+  var getYear = date.toLocaleString("default", { year: "numeric" });
+  var getMonth = date.toLocaleString("default", { month: "2-digit" });
+var getDay = date.toLocaleString("default", { day: "2-digit" });
+var dateFormat = getYear + "-" + getMonth + "-" + getDay;
+return dateFormat;
+}
+  checkout(){
+    this.cartService.checkout={
+      order_date:this.date(),
+      special_note:"i need super fast delivery, tatkalik",
+      estimate_delivery_date:this.date(),
+      sub_total:this.totalPrice,
+      tax_amount:this.taxAmount,
+      discount_amount:this.discountAmount,
+      total_amount: this.grandTotal,
+      paid_amount:this.grandTotal,
+      payment_type:2,
+
+      order_products:this.allOrder
+    // console.warn("cart",this.allOrder);
+
+
+  }
+  console.error("heyyyyy",this.cartService.checkout);
+
+
+}
 }

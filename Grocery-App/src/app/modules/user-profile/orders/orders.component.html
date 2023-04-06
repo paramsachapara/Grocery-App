@@ -29,33 +29,13 @@
   </div> -->
   <table class="table table-bordered ">
     <tbody>
-      <tr>
+      <tr *ngFor="let order of allOrder">
         <th scope="row" class="color"> <i class="fa fa-truck"></i></th>
         <td>Delivered</td>
-        <td>12 Mar, Sun 8:30 AM - 12:30 PM </td>
-        <td>Order Amount: Rs 162</td>
-        <td>1 item</td>
+        <td>{{order.order_date}} </td>
+        <td>Order Amount: Rs{{order.paid_amount}}</td>
+        <td><button (click)="getOrderDetails(order.id)" class="btn btn-success">order Details</button></td>
       </tr>
-      <tr>
-        <th scope="row" class="color"> <i class="fa fa-truck"></i></th>
-        <td>Delivered</td>
-        <td>12 Mar, Sun 8:30 AM - 12:30 PM </td>
-        <td>Order Amount: Rs 162</td>
-        <td>1 item</td>
-      </tr>
-      <tr>
-        <th scope="row" class="color"> <i class="fa fa-truck"></i></th>
-        <td>Delivered</td>
-        <td>12 Mar, Sun 8:30 AM - 12:30 PM </td>
-        <td>Order Amount: Rs 162</td>
-        <td>1 item</td>
-      </tr>
-      <tr>
-        <th scope="row" class="color"> <i class="fa fa-truck"></i></th>
-        <td>Delivered</td>
-        <td>12 Mar, Sun 8:30 AM - 12:30 PM </td>
-        <td>Order Amount: Rs 162</td>
-        <td>1 item</td>
-      </tr>
+
     </tbody>
   </table>

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AllItemService } from 'src/app/shared/service/all-item.service';
+import { ApiService } from '../../service/api.service';
 
 
 @Component({
@@ -7,24 +8,33 @@ import { AllItemService } from 'src/app/shared/service/all-item.service';
   templateUrl: './explore-category.component.html',
   styleUrls: ['./explore-category.component.css']
 })
-export class ExploreCategoryComponent {
+export class ExploreCategoryComponent implements OnInit{
 
-constructor(private service:AllItemService){
+constructor(private service:AllItemService , private api:ApiService){
+  // this.total_category=this.service.total_category
+  // console.log("all c ",this.total_category);
+  this.api.getAllCategory().subscribe({
+    next:(res:any)=>{
+      this.total_category=res.data;
+
+    },
+    error:err=>{
+      console.log("all categories error",err)
+    }
+  })
 
 }
+  ngOnInit() {
+  }
 
-  categories = this.service.category_name;
 
-  total_category=[
-    {id:1,path:"../assets/apple.png",category:"All",quantity:"20" },
-    {id:2,path:"../assets/carot.png",category:"vegetable",quantity:"20"},
-    {id:3,path:"../assets/oranges.png",category:"fruit",quantity:"20" },
-    {id:4,path:"../assets/palak.png",category:"Coffee&Tea",quantity:"20" },
-    {id:4,path:"../assets/palak.png",category:"Meat",quantity:"20" },
-    {id:3,path:"../assets/oranges.png",category:"fruit",quantity:"20" },
-    {id:4,path:"../assets/palak.png",category:"Coffee&Tea",quantity:"20" },
-    {id:4,path:"../assets/palak.png",category:"Meat",quantity:"20" }
-  ]
+  // categories = this.service.category_name;
+
+
+    total_category:any
+
+
+
 
   item_list=this.service.item_list
   slideConfig = {
@@ -62,11 +72,11 @@ constructor(private service:AllItemService){
     ]
   };
   slickInit() {
-    console.log('slick initialized')
+    // console.log('slick initialized')
   };
 
   breakpoint() {
-    console.log('breakpoint')
+    // console.log('breakpoint')
   };
 
 

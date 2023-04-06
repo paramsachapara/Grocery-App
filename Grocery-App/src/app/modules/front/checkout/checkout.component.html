@@ -8,9 +8,9 @@
 <div >
 <p class=" text-muted">Select delivery address</p>
 <div class="form-check d-flex justify-content-left " *ngFor="let address of address">
-  <input class="form-check-input d-flex align-content-center mt-3 " type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-  <label class="form-check-label ms-2" for="flexRadioDefault1" style="width: 50%;">
-    {{address}}
+  <input class="form-check-input d-flex align-content-center mt-3 " (change)="getId(address.id)" type="radio" name="address" id="flexRadioDefault">
+  <label class="form-check-label ms-2" for="flexRadioDefault" style="width: 50%;">
+   {{address.address_line_1}} ,{{address.address_line_2 }}, {{address.area}} ,{{address.city}}, {{address.postal_code}}, {{address.state}} ,{{address.country}}:{{address.tag}}
   </label>
 </div>
 <br><br>
@@ -21,7 +21,7 @@
 </p>
 <p>Grand total:</p>
 <button class="btn btn-secondary rounded-5">cancle</button>
-<button routerLink="placeOrder" class="btn btn-success rounded-5 ms-2">Place an order</button>
+<button (click)="placeOrder()"  class="btn btn-success rounded-5 ms-2">Place an order</button>
 
 </div>
 </div>>

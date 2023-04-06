@@ -61,24 +61,29 @@
       <div routerLink="cart" class="col-md-2 d-flex text-center justify-content-center align-items-center">
         <i class="fas fa-shopping-cart fa-2x position-relative me-3">
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success "style="width: 1.5rem;height:1rem; font-size: 10px;">
-            +{{cartSize}} <span class="visually-hidden">unread messages</span>
+            +{{cartItemCount}} <span class="visually-hidden">unread messages</span>
           </span>
         </i>
 
         <div>
           <div>My cart</div>
-          <div class="">$21</div>
+          <div class="">{{cartTotal | currency}}</div>
         </div>
       </div>
       <div class="col-md-2">
-        <div>
-          <a routerLink="userprofile/profile">
-            Param Sachapara
+        <div *ngIf="isUserLogedIn; else logInButton">
+          <a  routerLink="userprofile/profile">
+            {{userName}}
             <span class="" id="chevron-addon">
               <i class="fa-solid fa-chevron-down"></i>
             </span>
           </a>
         </div>
+        <ng-template #logInButton>
+          <button routerLink="login" class="btn btn-success">login</button>
+          <button routerLink="registration" class="btn btn-success ms-1">signUp</button>
+        </ng-template>
+
       </div>
     </div>
   </div>
@@ -87,7 +92,7 @@
   <div class="container lower_header">
     <div class="d-flex justify-content-between align-items-center">
       <div>
-        <button type="btn" class="btn btn-success">
+        <button [routerLink]="['category','All']" type="btn" class="btn btn-success" >
           Brows all Category
         </button>
       </div>

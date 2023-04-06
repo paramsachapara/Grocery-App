@@ -10,7 +10,7 @@
         <a routerLink="/userprofile/profile/orders">Orders</a>
         <a routerLink="/userprofile/profile/manage-Address">Manage Address</a>
         <a routerLink="/userprofile/profile/change-password">Change Password</a>
-        <a routerLink="/userprofile/login">Logout</a>
+        <a  (click)="getLogout()">Logout</a>
     </div>
     <div class="content">
         <router-outlet></router-outlet>

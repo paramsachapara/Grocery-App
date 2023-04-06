@@ -3,24 +3,35 @@
   <img src="../../../../assets/fruits&veg.png" alt="Snow" style="width:100%;">
   <div class="centered"><b><h1>manage address</h1></b></div>
 </div> -->
+<button  class="btn btn-success" (click)="addAddress()">add Address</button>
+<div class="d-flex">
 <div class="d-flex"*ngFor="let i of address">
-    <div class="container mt-5 ms-5" >
-        <div class="card" style="width: 18rem">
-            <div class="card-body">
-      <div class="card-title d-flex">
-          <h5>Default Address:</h5>
-        <span class="ms-3">{{i.type}}</span>
-    </div>
-    <h6 class="card-subtitle mb-2 text-muted">{{i.name}}</h6>
-    <p class="card-text">
-       {{i.address}}
-    </p>
-      <div class="d-flex justify-content-between">
+  <div class="container mt-5 ms-5 " >
+    <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <div class="card-title d-flex">
+          <h5>:</h5>
+          <span class="ms-3">{{i.tag}}</span>
+        </div>
+        <h6 class="card-subtitle mb-2 text-muted">{{i.name}}</h6>
+
+        <p class="card-text">
+
+          {{i.address_line_1}} {{i.address_line_2}},<br>
+          {{i.landmark}},{{i.area}},<br>
+          {{i.city}},{{i.postal_code}},<br>
+          {{i.state}},<br>
+          {{i.country}}
+        </p>
+
+        <div class="d-flex justify-content-between">
           <button class="btn btn-secondary">Deliver here</button>
-          <i class="fa-solid fa-trash fa-lg mt-3"></i>
-          <i class="fa fa-pen-to-square fa-lg mt-3"></i>
+          <i (click)="deleteAddress(i.id)" class="fa-solid fa-trash fa-lg mt-3"></i>   <!-- delete  -->
+
+          <i (click)="editAddress(i.id)" class="fa fa-pen-to-square fa-lg mt-3"></i> <!-- edit  -->
         </div>
     </div>
   </div>
+</div>
 </div>
 </div>

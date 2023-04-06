@@ -4,7 +4,7 @@ export interface cartItems{
   seller:string|undefined,
   price: number | undefined,
   category: string| undefined
-  quantity:string | undefined,
+  // quantity:string | undefined,
   subtotal:number| undefined,
   imageURL:string| undefined,
   quantityCount:number| undefined
