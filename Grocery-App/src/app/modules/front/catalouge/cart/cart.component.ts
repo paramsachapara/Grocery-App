@@ -75,7 +75,8 @@ export class CartComponent implements OnInit{
           this.itemsByCategories[item.category].total += item.subtotal;
         }
       });
-    ;
+    // console.error("products",this.itemsByCategories);
+
   }
 
 
@@ -202,7 +203,7 @@ return dateFormat;
       // console.warn("cart",this.allOrder);
     }
     console.error("heyyyyy",this.cartService.checkout);
-    this.router.navigate(['/cart/checkout'])
+    this.router.navigate(['/checkout'])
     this.service.cartGrandTotal.next(this.grandTotal);
     }
     else{

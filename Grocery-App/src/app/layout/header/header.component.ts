@@ -27,15 +27,16 @@ ngDoCheck(): void {
     this.isUserLogedIn=false;
   }
 
+    //username
+  let p =localStorage.getItem('username');
+  if (p){
+    this.userName =p
+  }
 
 }
 isUserLogedIn:boolean=false;
 ngOnInit() {
-  //username
-let p =localStorage.getItem('username');
-if (p){
-  this.userName =p
-}
+
 
 //cart size
 this.items.cartSize.subscribe((size) => {

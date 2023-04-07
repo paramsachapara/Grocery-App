@@ -22,9 +22,8 @@ export class CheckoutComponent implements OnInit{
 
   grandTotal:any;
   address:any;
-  zeroAddress:boolean=false;
-  selectedId:any=0;
-  activatePlaceOrderButton:boolean=false;
+  zeroAddress:boolean;
+  selectedId:any=0; // this is for id encryption
   encryptedAddressId:any;
   delivery_address_id:any;
   billing_address_id:any;
@@ -48,14 +47,8 @@ export class CheckoutComponent implements OnInit{
   }
  );
 
- if(this.selectedId != 0){
-  this.activatePlaceOrderButton=true;
- }
 
- if(!this.zeroAddress){
-  this.zeroAddress=true
-  console.error("please add one address")
- }
+
 
   }//OnInit ends here
 
@@ -85,11 +78,11 @@ export class CheckoutComponent implements OnInit{
     this.api.addOrders(this.body,this.delivery_address_id,this.billing_address_id,this.payment_status,this.order_status).subscribe({
       next:(res:any)=>{
         this.toastr.success(res.message);
-        this.router.navigate(["placeOrder"])
         localStorage.removeItem('cartItems') // empty loaclstorage
-        this.service.cartarray=[];
-        this.router.navigate(['/cart/checkout/placeOrder']);
         localStorage.setItem('cartItems',JSON.stringify([]))
+        this.router.navigate(["placeOrder"])
+        this.service.cartarray=[];
+        // this.router.navigate(['/placeOrder']);
       },
       error:(err:any)=> {
         this.toastr.error('Failure:)');

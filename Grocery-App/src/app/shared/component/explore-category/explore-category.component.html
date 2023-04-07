@@ -15,7 +15,7 @@
   [config]="slideConfig"
   (init)="slickInit()"
   (breakpoint)="breakpoint()" >
-  <div ngxSlickItem *ngFor="let item of total_category" [routerLink]="['category',item.slug]"class="slide  d-flex align-item-center justify-content-center" >
+  <div ngxSlickItem *ngFor="let item of total_category" [routerLink]="['/category', item.slug]" class="slide  d-flex align-item-center justify-content-center" >
     <div  class="card  d-flex"  style="width:12rem; height:auto;background-color: #FEEFEA;" >
       <!-- <img src={{item.path}} class="card-img-top "  style="width:10rem; height:10rem;margin:auto" alt={{item.path}}> -->
       <div class="card-body">
