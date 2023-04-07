@@ -10,20 +10,26 @@ import { FrontModule } from './modules/front/front.module';
 import { LoginComponent } from './modules/front/user/login/login.component';
 import { RegistrationComponent } from './modules/front/user/registration/registration.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { PageNotFoundComponent } from './shared/component/page-not-found/page-not-found.component';
+import { UserProfileComponent } from './modules/user-profile/user-profile/user-profile.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home/category/:categoryName', component: CategoryComponent },
   { path: 'category/:categoryName', component: CategoryComponent },
-  {path: 'category/:categoryName/product/:productId',component: ProductDetailsComponent},
-  {path: 'product/:productId',component: ProductDetailsComponent},
+  // {path: 'category/:categoryName/product/:productId',component: ProductDetailsComponent},
+  {path: 'home/category/product/:productid',component: ProductDetailsComponent},
+  {path: 'home/product/:productid',component: ProductDetailsComponent},
+
   { path: 'cart', component: CartComponent },
   { path: 'cart/checkout', component: CheckoutComponent },
   { path: 'cart/checkout/placeOrder', component: OrderPlacedComponent },
   { path: 'login', component: LoginComponent },
   {path:'registration', component:RegistrationComponent},
   {path:'home',component:HomeComponent},
+  {path:'profile',component:UserProfileComponent,canActivate:[AuthGuard]},
+
 
   {
     path: 'userprofile',
@@ -33,6 +39,10 @@ const routes: Routes = [
       ),
       canActivate:[AuthGuard]
   },
+  // {
+  //   path:'**',
+  //   component:PageNotFoundComponent
+  // }
 
 ];
 

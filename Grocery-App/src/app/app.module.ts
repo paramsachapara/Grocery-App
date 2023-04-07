@@ -32,6 +32,7 @@ import { TokenInterceptorInterceptor } from '../app/shared/interceptors/token-in
 import { ApiService } from './shared/service/api.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { PageNotFoundComponent } from './shared/component/page-not-found/page-not-found.component';
 
 
 
@@ -51,7 +52,8 @@ import { ToastrModule } from 'ngx-toastr';
     HomeComponent,
    CheckoutComponent,
     OrderPlacedComponent,
-    ProductCarouselComponent
+    ProductCarouselComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

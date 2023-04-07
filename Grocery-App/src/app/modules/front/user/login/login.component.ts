@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators ,FormGroup } from '@angular/forms';
 import { ApiService } from 'src/app/shared/service/api.service';
 import { Router } from '@angular/router';
@@ -10,8 +10,12 @@ import { UserDetails } from 'src/app/shared/models/user-details';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 constructor(private login:FormBuilder, private api:ApiService, private router:Router,private userservice:UserService){}
+  ngOnInit(){
+    window.scrollTo(0,0);
+    
+  }
 loginForm=this.login.group({
   username:['',[Validators.required]],
   password:['',[Validators.required]]

@@ -13,9 +13,16 @@ import { Router } from '@angular/router';
 })
 export class CheckoutComponent implements OnInit{
 
-  constructor(private service:AllItemService, private api:ApiService,private toastr: ToastrService,private cartservice:CartService,private router:Router){}
+  constructor(private service:AllItemService, private api:ApiService,private toastr: ToastrService,private cartservice:CartService,private router:Router){
+    this.service.cartGrandTotal.subscribe((res)=>{
+      this.grandTotal=res;
 
+    })
+  } //constructor ends
+
+  grandTotal:any;
   address:any;
+  zeroAddress:boolean=false;
   selectedId:any=0;
   activatePlaceOrderButton:boolean=false;
   encryptedAddressId:any;
@@ -44,7 +51,13 @@ export class CheckoutComponent implements OnInit{
  if(this.selectedId != 0){
   this.activatePlaceOrderButton=true;
  }
-  }
+
+ if(!this.zeroAddress){
+  this.zeroAddress=true
+  console.error("please add one address")
+ }
+
+  }//OnInit ends here
 
   getId(id:number){
     this.selectedId=id
@@ -68,20 +81,26 @@ export class CheckoutComponent implements OnInit{
 
   }
   placeOrder(){
-
+    confirm("confirm , to place order")
     this.api.addOrders(this.body,this.delivery_address_id,this.billing_address_id,this.payment_status,this.order_status).subscribe({
       next:(res:any)=>{
         this.toastr.success(res.message);
         this.router.navigate(["placeOrder"])
-        localStorage.removeItem('cartitems') // empty loaclstorage
+        localStorage.removeItem('cartItems') // empty loaclstorage
         this.service.cartarray=[];
+        this.router.navigate(['/cart/checkout/placeOrder']);
+        localStorage.setItem('cartItems',JSON.stringify([]))
       },
       error:(err:any)=> {
         this.toastr.error('Failure:)');
-        this.router.navigate(['cart'])
+        this.router.navigate(['cart']);
       }
     })
 
+  }
+  cancelOrder(){
+    this.toastr.success('Ordered cancelled');
+    this.router.navigate(['cart'])
   }
   //guno address
 // address:any =this.service.deliveryAddress;

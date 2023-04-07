@@ -24,13 +24,8 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
           token: token,
         }
       });
-
-
     }
-
-    console.log("this request",request);
+    // console.log("this request",request);
     return next.handle(request);
-
-
   }
 }

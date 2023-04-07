@@ -18,6 +18,8 @@ interface Grocery {
   providedIn: 'root',
 })
 export class AllItemService implements OnInit {
+  cartitems_length=JSON.parse(localStorage.getItem('cartItems'))
+  Cart_length=this.cartitems_length.length
   constructor(private api:ApiService,private toastr: ToastrService) {
     this.api.getAllProduct().subscribe({
       next:(res:any)=>{
@@ -27,11 +29,19 @@ export class AllItemService implements OnInit {
 
       }
     })
+    if(this.cartitems_length){
+      this.cartLength=this.Cart_length
+    }else{
+      this.cartLength=0
+    }
+  this.cartSize = new BehaviorSubject<number>(this.cartLength);
+
   }
 
   category: any;
   cartLength: number = 0;
-  cartSize = new BehaviorSubject<number>(0);
+  cartSize = new BehaviorSubject<number>(this.cartLength);
+  cartGrandTotal = new BehaviorSubject<any>(0);
   alreadyDataExist:boolean=false
 
   ngOnInit() {console.log("ertytrew",this.item_list)}
@@ -45,11 +55,11 @@ export class AllItemService implements OnInit {
     // {id:4,path:"../assets/palak.png",category:"Coffee&Tea",quantity:"20" },
     // {id:4,path:"../assets/palak.png",category:"Meat",quantity:"20" }
 
-  deliveryAddress = [
-    'C-1326, aksharnath, Kalvibid , Bhavnagar',
-    'C-1326, aksharnath, Kalvibid , Bhavnagar',
-    'C-1326, aksharnath, Kalvibid , Bhavnagar',
-  ];
+  // deliveryAddress = [
+  //   'C-1326, aksharnath, Kalvibid , Bhavnagar',
+  //   'C-1326, aksharnath, Kalvibid , Bhavnagar',
+  //   'C-1326, aksharnath, Kalvibid , Bhavnagar',
+  // ];
   item_list = [
     // {id: 1,path: '../assets/apple.png',category: 'fruit',name: 'apple',quantity: '20',price: 5,discount: '2',seller: 'jio',ratting: 2,
     // },
@@ -111,7 +121,7 @@ export class AllItemService implements OnInit {
     objectToPush.subtotal = addedObject?.amount;
     objectToPush.imageURL = addedObject?.avatar_image;
     objectToPush.seller = addedObject?.seller;
-console.log("onject to push",objectToPush);
+    // console.log("onject to push",objectToPush);
 
     let x= localStorage.getItem('cartItems')
     if(x){
@@ -149,7 +159,8 @@ console.log("onject to push",objectToPush);
 
 
 
-
+      let cartlength = JSON.parse(localStorage.getItem('cartItems')).length;
+      this.cartSize.next(cartlength);
   } //pushToCartArray function ends here
 
 

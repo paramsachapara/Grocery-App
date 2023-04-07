@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { addAddress } from 'src/app/shared/models/add-address';
 
 import { ApiService } from 'src/app/shared/service/api.service';
@@ -151,7 +152,7 @@ export class EditAddressComponent {
       stateArr:[]=[]
   addressData!:addAddress;
   address: any;
-  constructor(private fb:FormBuilder, private route:ActivatedRoute, private api:ApiService){
+  constructor(private fb:FormBuilder, private route:ActivatedRoute, private api:ApiService,private toastr: ToastrService,private router:Router){
    this.editAddress=this.fb.group({
      address1:['',Validators.required],
      address2:['',Validators.required],
@@ -245,9 +246,12 @@ onSave(){
     this.api.editAddress(this.addressData, res.data).subscribe(
       {next:(res:any)=>{
          console.log(res)
+         this.toastr.success("addredd Updated");
+         this.router.navigate(['/userprofile/profile/manage-Address'])
      },
      error:(err:any)=>{
        console.log(err)
+       this.toastr.error("update failure");
      }})
   })
 

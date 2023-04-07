@@ -12,9 +12,11 @@ export const environment = {
   allProduct:"/product/get-all-products",
   allOrders:"/customer/get-customer-all-orders",
   deleteCustomerAddress:"/customer/delete-customer-address",
-  editCustomerAddress:"customer/update-customer-address",
+  editCustomerAddress:"/customer/update-customer-address",
   getOrderDetailById:"/order/get-order-by-id",
   getAllProduct:"/product/get-all-products",
-  productByCategoryId:"/product/get-product-by-category-id"
+  productByCategoryId:"/product/get-product-by-category-id",
+  productById:"/product/get-product-by-id"
+
 
 };

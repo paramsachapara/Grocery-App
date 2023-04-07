@@ -12,7 +12,9 @@ import { UserService } from 'src/app/shared/service/user.service';
 export class HeaderComponent implements OnInit{
 
 
-  constructor(private items:AllItemService, private cartService:CartService,private api:ApiService, private userService:UserService){}
+  constructor(private items:AllItemService, private cartService:CartService,private api:ApiService, private userService:UserService){
+
+  }
   cartItemCount = 0;
   cartTotal:any;
   cart:any;
@@ -24,43 +26,23 @@ ngDoCheck(): void {
   }else{
     this.isUserLogedIn=false;
   }
-  // let x= localStorage.getItem('cartItems');
-  // if (x){
-  //   this.cart=JSON.parse(x);
-  // }
+
 
 }
 isUserLogedIn:boolean=false;
 ngOnInit() {
+  //username
 let p =localStorage.getItem('username');
 if (p){
   this.userName =p
 }
 
+//cart size
+this.items.cartSize.subscribe((size) => {
+  this.cartItemCount = size;
+});
+
 }
-
-
-
-// getUserDetails(){
-//   this.api.userDetails().subscribe(
-//     {
-//       next:res=>{
-//         console.warn("userDetails api ma control avo");
-//         // this.userDetails==res;
-//         console.log("user data",res);
-//         localStorage.setItem("userDetails",JSON.stringify(res))
-//       },
-//       error:error=>{console.log(error);
-//         console.warn("userDetails api ma control no avo error avi gai");
-//         alert(error.message)
-//         console.log(error);}
-
-//     }
-//   )
-// } //get user api ends
-
-
-
  doSearch(){
 
  }

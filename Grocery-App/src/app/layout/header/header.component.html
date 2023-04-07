@@ -3,7 +3,7 @@
     <div class="row p-1 upper_header align-items-center">
       <div class="col-md-3 row">
         <div class="col-md-1">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" routerLink="home">
             <img
               src="../assets/logo.png"
               height="30"
@@ -13,7 +13,7 @@
           </a>
         </div>
         <div class="col-md-11">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" routerLink="home">
             <img
               src="../assets/Frame 1.png"
               height="30"
@@ -72,11 +72,11 @@
       </div>
       <div class="col-md-2">
         <div *ngIf="isUserLogedIn; else logInButton">
-          <a  routerLink="userprofile/profile">
-            {{userName}}
-            <span class="" id="chevron-addon">
-              <i class="fa-solid fa-chevron-down"></i>
-            </span>
+          <a class="font-weight-bold color-dark username ms-5" routerLink="userprofile/profile">
+
+            <span class="ms-1 me-1" id="chevron-addon">
+              <i class="fa-regular fa-user"></i>
+            </span>{{userName}}
           </a>
         </div>
         <ng-template #logInButton>

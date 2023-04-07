@@ -25,7 +25,7 @@
 
   <div class="container ind">
     <div class="card " *ngFor="let product of newDisplay">
-      <img [routerLink]="['product',product.id]" src="{{product.avatar_image}}" class="card-img-top image" alt="">
+      <img [routerLink]="['../product',product.id]" src="../../../../../assets/oranges.png" class="card-img-top image" alt="">
       <div   class="card-body">
           <span class="card-text category">{{product.category}}</span>
           <h4>{{product.title}}</h4>

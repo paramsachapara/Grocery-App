@@ -26,6 +26,7 @@ export class ApiService {
   editCustomerAddress = environment.editCustomerAddress
   orderById = environment.getOrderDetailById
   productByCategoryId = environment.productByCategoryId
+  productById = environment.productById
 
   constructor(private http: HttpClient) { }
 
@@ -45,7 +46,7 @@ export class ApiService {
     return this.http.put<any>(this.baseURL + this.changePassword, allPassword)
   }
   getAllCategory() {
-    return this.http.get(this.baseURL + this.allCategory, { headers: new HttpHeaders({ 'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*' }) });
+    return this.http.get('https://a521-117-217-127-105.in.ngrok.io/api/v1/category/get-all-categories', { headers: new HttpHeaders({ 'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*' }) });
   }
   postAddressData(address: addAddress) {
     return this.http.post<any>(this.baseURL + this.addAddress, address)
@@ -71,6 +72,9 @@ export class ApiService {
   }
   getOrderDetailById(id: any) {
     return this.http.get(this.baseURL + this.orderById, { headers: new HttpHeaders({ 'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*', 'order_id': id }) })
+  }
+  getProductBYId(id:any){
+    return this.http.get(this.baseURL + this.productById, { headers: new HttpHeaders({ 'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*', 'product_id': id }) })
   }
   getProductsByCategories(id:string):Observable<any>{
     return  new Observable((observer) =>{this.http.get(this.baseURL+this.productByCategoryId,{headers: new HttpHeaders({'ngrok-skip-browser-warning': 'skip-browser-warning', 'Access-Control-Allow-Origin': '*','category_id':id})

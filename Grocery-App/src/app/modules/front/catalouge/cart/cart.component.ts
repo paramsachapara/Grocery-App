@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { take } from 'rxjs';
 
 import { cartItems } from 'src/app/shared/models/cartInterface';
+import { AllItemService } from 'src/app/shared/service/all-item.service';
 import { CartService } from 'src/app/shared/service/cart.service';
-// import { DatePipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+
+
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +16,7 @@ import { CartService } from 'src/app/shared/service/cart.service';
 })
 export class CartComponent implements OnInit{
   cartarray: any;
-  constructor(private cartService:CartService){
+  constructor(private cartService:CartService,private service:AllItemService, private router:Router,private toastr: ToastrService){
 
   }
   ngOnInit() {
@@ -28,6 +32,8 @@ export class CartComponent implements OnInit{
 
     //getting all ordered items
     this.getallorders();
+
+    window.scrollTo(0,0);
 
   }
   //DECLARED VARIABLE
@@ -94,9 +100,10 @@ export class CartComponent implements OnInit{
   }
    decreaseCount(id:any){
     let itemToDecrease=this.findProductById(id)
-    if(itemToDecrease.quantityCount>0){
+    if(itemToDecrease.quantityCount>1){
       itemToDecrease.quantityCount-=1;
     }else{
+      this.removeItem(id)
       itemToDecrease.quantityCount=0;
       itemToDecrease.subtotal=0
     }
@@ -105,6 +112,10 @@ export class CartComponent implements OnInit{
     localStorage.setItem("cartItems",JSON.stringify(this.cartarray))
     this.getItemsByCategory()
     this.finalBill()
+
+    //send cartsize to behaviour subject in allservive service
+    let cartlength=JSON.parse(localStorage.getItem('cartItems')).length;
+    this.service.cartSize.next(cartlength);
    }
 
   finalBill(){
@@ -131,6 +142,10 @@ export class CartComponent implements OnInit{
 localStorage.setItem("cartItems",JSON.stringify(this.cartarray))
     this.getItemsByCategory()
     this.finalBill()
+
+    //send cartsize to behaviour subject in allservive service
+    let cartlength=JSON.parse(localStorage.getItem('cartItems')).length;
+    this.service.cartSize.next(cartlength);
       }
 
   }
@@ -156,7 +171,7 @@ localStorage.setItem("cartItems",JSON.stringify(this.cartarray))
       })
     }
     this.allOrder=finalItems;
-     console.log("fina products",finalItems);
+    //  console.log("fina products",finalItems);
 
 }
 
@@ -170,23 +185,31 @@ var dateFormat = getYear + "-" + getMonth + "-" + getDay;
 return dateFormat;
 }
   checkout(){
-    this.cartService.checkout={
-      order_date:this.date(),
-      special_note:"i need super fast delivery, tatkalik",
-      estimate_delivery_date:this.date(),
-      sub_total:this.totalPrice,
-      tax_amount:this.taxAmount,
-      discount_amount:this.discountAmount,
-      total_amount: this.grandTotal,
-      paid_amount:this.grandTotal,
-      payment_type:2,
+    if(localStorage.getItem('token')){
 
-      order_products:this.allOrder
-    // console.warn("cart",this.allOrder);
+      this.cartService.checkout={
+        order_date:this.date(),
+        special_note:"i need super fast delivery, tatkalik",
+        estimate_delivery_date:this.date(),
+        sub_total:this.totalPrice,
+        tax_amount:this.taxAmount,
+        discount_amount:this.discountAmount,
+        total_amount: this.grandTotal,
+        paid_amount:this.grandTotal,
+        payment_type:2,
 
+        order_products:this.allOrder
+      // console.warn("cart",this.allOrder);
+    }
+    console.error("heyyyyy",this.cartService.checkout);
+    this.router.navigate(['/cart/checkout'])
+    this.service.cartGrandTotal.next(this.grandTotal);
+    }
+    else{
+      this.toastr.error('Please do login first :)');
 
-  }
-  console.error("heyyyyy",this.cartService.checkout);
+      this.router.navigate(['login'])
+    }
 
 
 }

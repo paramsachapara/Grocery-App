@@ -19,25 +19,32 @@ export class CategoryComponent {
     // this.category = this.activatedroute.snapshot.paramMap.get('categoryName');
     this.route.params.subscribe((params) => {
       this.groceryCategorySlug = params['categoryName'];
+      // console.warn("groceryCategorySlug",this.groceryCategorySlug);
+
       let categories;
       this.api.getAllCategory().subscribe((res: any) => {
         categories = res.data;
-        // console.log(categories);
+        // console.log("all categories",categories);
         let categoryId: any;
 
         categories.find((category: any) => {
           if (category.slug == this.groceryCategorySlug) {
             categoryId = category.id;
-            console.log(categoryId);
+            // console.log("matched category id",categoryId);
 
             this.api.encryptdata(JSON.stringify(categoryId)).subscribe
             ({
               next: (res_encrypt: any) => {
                 categoryId = res_encrypt.data;
                 this.api.getProductsByCategories(categoryId)
-                  .subscribe((product) => {
-                    this.newDisplay = product.data;
-                    console.log('this.products', this.newDisplay);
+                  .subscribe((res) => {
+                    // console.log("responce of product",res.data);
+                    const products = []
+                    for (let i = 0; i < res.data.length; i++) {
+                      products.push(res.data[i].product);
+                    }
+                    this.newDisplay=products;
+                    // console.log('this.products final list', this.newDisplay);
                   });
               },
               error: (err: any) => {
@@ -51,7 +58,7 @@ export class CategoryComponent {
     // this.filteredProductsDuplicate.filteredProducts
     // console.log(this.filteredProductsDuplicate);
     // this.newDisplay = this.filteredProducts;
-    console.log(this.newDisplay);
+    // console.log("new products",this.newDisplay);
 
     // console.log(this.filteredProducts);
     // console.log(this.selectedBrand)

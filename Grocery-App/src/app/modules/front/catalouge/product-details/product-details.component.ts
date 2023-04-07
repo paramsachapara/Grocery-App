@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AllItemService } from 'src/app/shared/service/all-item.service';
+import { ApiService } from 'src/app/shared/service/api.service';
 
 
 
@@ -12,24 +13,52 @@ import { AllItemService } from 'src/app/shared/service/all-item.service';
 
 export class ProductDetailsComponent implements OnInit
   {
-  constructor(private activated:ActivatedRoute, private service:AllItemService){}
+  constructor(private activated:ActivatedRoute, private service:AllItemService,private api:ApiService){}
 
  ngOnInit(): void {
-     this.productId=this.activated.snapshot.paramMap.get('productId');
-     this.getProductDetails();
+     this.productId=this.activated.snapshot.paramMap.get('productid');
+     console.log("Product id",this.productId);
 
-     this.productName=this.productDetails[0].name;
-     this.productImagePath=this.productDetails[0].path;
-     this.productCategory=this.productDetails[0].category;
-     this.productQuantity=this.productDetails[0].quantity;
-     this.productRatting=this.productDetails[0].ratting;
-     this.productSeller=this.productDetails[0].seller;
-     this.productPrice=this.productDetails[0].price;
-     this.productTotalPrice=this.productPrice
+    //  this.getProductDetails(); junu
+    this.api.encryptdata(this.productId).subscribe({
+      next: (res: any) => {
+        this.encryptedId = res.data;
+        // console.log("encrypted data",res.data);
+        console.log('encrypted data', this.encryptedId);
+
+        this.api.getProductBYId(this.encryptedId).subscribe({
+          next: (res: any) => {
+            this.productName = res.data.title;
+            this.productImagePath = res.data.avatar_image;
+            this.productCategory = 'default';
+            this.productQuantity = 1;
+            this.productRatting = 3;
+            this.productSeller = 'default';
+            this.productPrice = res.data.amount;
+            this.short_description=res.data.short_description
+            this.description=res.data.description
+            this.productTotalPrice = this.productQuantity * this.productPrice;
+            console.log('product');
+          },
+          error: (err: any) => {},
+        }); ///getProduct by id ends here
+      },
+      error: (err: any) => {
+        console.log('encryption problem in product details', err);
+      },
+    });
+
+
+
+
+    // this.api.getOrderDetailById //junu
+
+
     //  console.log(this.productPrice)
 
 
  };
+  encryptedId:any;
  productDetails:any;
   productCount:any=1;
   productName:any;
@@ -41,6 +70,9 @@ export class ProductDetailsComponent implements OnInit
   productRatting:any;
   productQuantity:any;
   productTotalPrice:any;
+  productSlug:any;
+  short_description: any;
+  description: any;
 
 
 getProductDetails(){

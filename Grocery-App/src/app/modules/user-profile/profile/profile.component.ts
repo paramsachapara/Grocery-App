@@ -23,18 +23,18 @@ export class ProfileComponent implements OnInit{
       last_name:this.profileForm.get("first_name")?.value,
       secondary_email:this.profileForm.get("secondary_email")?.value,
       secondary_mobile_number:this.profileForm.get("secondary_mobile_number")?.value,
-      password:this.profileForm.get("password")?.value,
+      // password:this.profileForm.get("password")?.value,
       date_of_birth:this.profileForm.get("date_of_birth")?.value
 
     }
     console.warn("xxx",this.userDataToUpdate);
 
     this.api.updateUserData(this.userDataToUpdate).subscribe({
-      next:res=>{
-        this.toastr.success('res.message');
+      next:(res:any)=>{
+        this.toastr.success(res.message);
       },
-      error:err=>{
-        this.toastr.error('res.message');
+      error:(err:any)=>{
+        this.toastr.error(err.message);
       }
     })
   }
@@ -68,7 +68,7 @@ export class ProfileComponent implements OnInit{
       primary_email:['',[Validators.required,Validators.email]],
       secondary_email:['',[Validators.required , Validators.email]],
       secondary_mobile_number:['',[Validators.required]],
-      date_of_birth:['',[Validators.required]],
-      password:['',Validators.required]
+      date_of_birth:['',[Validators.required]]
+      // password:['',Validators.required]
     })
 }

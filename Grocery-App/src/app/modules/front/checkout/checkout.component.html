@@ -6,6 +6,8 @@
 <br>
 <div class="d-flex justify-content-center">
 <div >
+
+<div *ngIf="zeroAddress; else elseBlock">
 <p class=" text-muted">Select delivery address</p>
 <div class="form-check d-flex justify-content-left " *ngFor="let address of address">
   <input class="form-check-input d-flex align-content-center mt-3 " (change)="getId(address.id)" type="radio" name="address" id="flexRadioDefault">
@@ -15,13 +17,21 @@
 </div>
 <br><br>
 <pre class="d-flex justify-content-left">By placing order you agree
- to terms and condition
+  to terms and condition
 </pre>
-<p>Payment mode: Cash on Delivery
+<p>Payment mode: <b>BehaviorSubject</b>
 </p>
-<p>Grand total:</p>
-<button class="btn btn-secondary rounded-5">cancle</button>
+<p>Grand total: <span><b>{{grandTotal}}</b></span></p>
+<button (click)="cancelOrder()" class="btn btn-secondary rounded-5">cancel</button>
 <button (click)="placeOrder()"  class="btn btn-success rounded-5 ms-2">Place an order</button>
+</div>
+
+
+<ng-template #elseBlock>
+  <p style="color:red">No address to select please add your address first...</p>
+  <button routerLink="/userprofile/profile/add-address" class="btn btn-success ms-5">Add address</button>
+</ng-template>
+
 
 </div>
 </div>>
