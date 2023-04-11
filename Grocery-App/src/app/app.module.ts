@@ -32,7 +32,11 @@ import { TokenInterceptorInterceptor } from '../app/shared/interceptors/token-in
 import { ApiService } from './shared/service/api.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './shared/component/page-not-found/page-not-found.component';
+import { SearchResultComponent } from './shared/component/search-result/search-result.component';
+
+// Import library module
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 
@@ -53,7 +57,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
    CheckoutComponent,
     OrderPlacedComponent,
     ProductCarouselComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +76,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
       timeOut: 1000,
     positionClass: 'toast-bottom-center',
     preventDuplicates: true
-    })
+    }),
+
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
 
 
   ],

@@ -10,14 +10,16 @@ import { FrontModule } from './modules/front/front.module';
 import { LoginComponent } from './modules/front/user/login/login.component';
 import { RegistrationComponent } from './modules/front/user/registration/registration.component';
 import { AuthGuard } from './shared/guards/auth.guard';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './shared/component/page-not-found/page-not-found.component';
 import { UserProfileComponent } from './modules/user-profile/user-profile/user-profile.component';
+import { SearchResultComponent } from './shared/component/search-result/search-result.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   {path:'home',component:HomeComponent},
   {path:'profile',component:UserProfileComponent,canActivate:[AuthGuard]},
+  {path:'search/:val',component:SearchResultComponent},
 
 
   {

@@ -13,4 +13,11 @@ body .slick-next {
   z-index: 100;
   border-radius: 100%;
 }
+ngx-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* transform: translate(-50%, -50%);  */
+
+}
 

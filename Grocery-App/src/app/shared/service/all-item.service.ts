@@ -18,7 +18,7 @@ interface Grocery {
   providedIn: 'root',
 })
 export class AllItemService implements OnInit {
-  cartitems_length=JSON.parse(localStorage.getItem('cartItems'))
+  cartitems_length=(localStorage.getItem('cartItems')) //// last update
   Cart_length=this.cartitems_length.length
   constructor(private api:ApiService,private toastr: ToastrService) {
     this.api.getAllProduct().subscribe({
@@ -135,19 +135,7 @@ export class AllItemService implements OnInit {
       let alreadyData = this.cartarray.find((x: { id: number | undefined }) => x.id == objectToPush.id);
       if(alreadyData){
         this.toastr.success('Already added :)');
-        // console.log("matched");
-        // console.warn("before subtotal",alreadyData.subtotal);
 
-
-        // alreadyData.quantityCount += 1;
-        // console.warn("alreadyData.amount",alreadyData.price);
-        // console.warn("alreadyData.quantityCount",alreadyData.quantityCount);
-
-
-        // alreadyData.subtotal = alreadyData.amount * alreadyData.quantityCount;
-        // console.warn("after subtotal",alreadyData.subtotal);
-
-        // console.log("Subtotal ",alreadyData)
       }
       else{
         this.cartarray.push(objectToPush)

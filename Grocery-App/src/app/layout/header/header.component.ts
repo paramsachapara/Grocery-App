@@ -3,6 +3,7 @@ import { AllItemService } from '../../shared/service/all-item.service';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { ApiService } from 'src/app/shared/service/api.service';
 import { UserService } from 'src/app/shared/service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +11,10 @@ import { UserService } from 'src/app/shared/service/user.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit{
+searchTerm: any;
 
 
-  constructor(private items:AllItemService, private cartService:CartService,private api:ApiService, private userService:UserService){
+  constructor(private items:AllItemService, private cartService:CartService,private api:ApiService, private userService:UserService, private router:Router){
 
   }
   cartItemCount = 0;
@@ -44,7 +46,13 @@ this.items.cartSize.subscribe((size) => {
 });
 
 }
- doSearch(){
+searchProducts(val:any){
 
+
+ if(val){
+  this.router.navigate(['search',val]);
+  console.log("heyy");
  }
-}
+ }
+} // export ends
+

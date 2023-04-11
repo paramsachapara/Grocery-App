@@ -46,14 +46,18 @@
                 placeholder="Search"
                 aria-label="Search"
                 aria-describedby="search-addon"
+                [(ngModel)]="searchTerm"
+                [ngModelOptions]="{ standalone: true }"
               />
             </div>
-            <span
+            <button
+              style="cursor: pointer;"
               class="input-group-text border-0 hey col-sm-1"
-              id="search-addon"
+              id="search-addon "
+              (click)="searchProducts(searchTerm)"
               >
-              <i class="fas fa-search"></i>
-            </span>
+              <i class="fas fa-search" ></i>
+            </button>
           </form>
         </div>
       </div>

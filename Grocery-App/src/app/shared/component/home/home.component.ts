@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AllItemService } from '../../service/all-item.service';
 import { ApiService } from '../../service/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-home',
@@ -9,11 +10,19 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
-constructor(private service:AllItemService,private api:ApiService,private toastr: ToastrService){
+constructor(private service:AllItemService,private api:ApiService,private toastr: ToastrService,private spinner: NgxSpinnerService){
 
 
 }
   ngOnInit() {
     window.scrollTo(0,0)
+
+     /** spinner starts on init */
+     this.spinner.show();
+
+     setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 1000);
   }
 }

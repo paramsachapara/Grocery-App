@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AllItemService } from 'src/app/shared/service/all-item.service';
 import { ApiService } from 'src/app/shared/service/api.service';
 
@@ -12,10 +13,20 @@ export class CategoryComponent {
   constructor(
     private route: ActivatedRoute,
     private items: AllItemService,
-    private api:ApiService
+    private api:ApiService,
+    private spinner: NgxSpinnerService
   ) {}
   ngOnInit(): void {
     window.scrollTo(0, 0);
+
+    //spinner
+    this.spinner.show();
+
+     setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 1000);
+
     // this.category = this.activatedroute.snapshot.paramMap.get('categoryName');
     this.route.params.subscribe((params) => {
       this.groceryCategorySlug = params['categoryName'];
