@@ -19,11 +19,17 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
 
 
     if (token) {
-      request = request.clone({
+      if (request.url.includes('/login')) {
+      return next.handle(request);
+    }
+    else{
+        request = request.clone({
         setHeaders: {
           token: token,
         }
       });
+    }
+
     }
     // console.log("this request",request);
     return next.handle(request);

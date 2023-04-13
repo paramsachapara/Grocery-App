@@ -44,6 +44,9 @@ img{
   text-decoration: none;
   color: black;
 
-
+}
+.username:hover{
+  color: blue;
+  font-size:large ;
 }
 

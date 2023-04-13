@@ -24,6 +24,9 @@ export class OrderDetailsComponent implements OnInit {
     });
   }
   ngOnInit() {
+
+    window.scrollTo(0,0)
+
     if (this.orderID) {
       this.api.encryptdata(this.orderID).subscribe({
         next: (res: any) => {

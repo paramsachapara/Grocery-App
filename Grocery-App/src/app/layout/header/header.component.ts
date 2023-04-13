@@ -39,6 +39,7 @@ ngDoCheck(): void {
 isUserLogedIn:boolean=false;
 ngOnInit() {
 
+  localStorage.setItem('cartItems',JSON.stringify([]))
 
 //cart size
 this.items.cartSize.subscribe((size) => {

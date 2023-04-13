@@ -13,3 +13,6 @@
   transform: translate(-50%, -50%);
   color: black;
 }
+.checkoutBox{
+  border: 1px solid black;
+}

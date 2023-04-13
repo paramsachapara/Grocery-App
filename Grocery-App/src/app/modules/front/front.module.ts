@@ -11,9 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     CommonModule,
     FrontRoutingModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
+    ReactiveFormsModule
   ]
 })
 export class FrontModule { }

@@ -23,7 +23,7 @@
   <tbody *ngFor="let category of itemsByCategories | keyvalue">
 
   <tr class="table-secondary">
-    <td  colspan="5"><pre>{{category.key }}  item:rs {{category.value.total}}</pre></td>
+    <td  colspan="5"><pre>{{category.key }}  RS. {{category.value.total}}</pre></td>
   </tr>
     <tr *ngFor="let product of category.value.items">
 

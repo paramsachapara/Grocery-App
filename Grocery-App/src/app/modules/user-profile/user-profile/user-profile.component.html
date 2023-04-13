@@ -6,11 +6,11 @@
 
 <div class=" container d-flex ">
     <div class="sidebar me-5">
-        <a routerLink="/userprofile/profile">Profile</a>
-        <a routerLink="/userprofile/profile/orders">Orders</a>
-        <a routerLink="/userprofile/profile/manage-Address">Manage Address</a>
-        <a routerLink="/userprofile/profile/change-password">Change Password</a>
-        <a  (click)="getLogout()">Logout</a>
+        <a style="cursor: pointer;" class="option" routerLink="/userprofile/profile">Profile</a>
+        <a style="cursor: pointer;" class="option" routerLink="/userprofile/profile/orders">Orders</a>
+        <a style="cursor: pointer;" class="option" routerLink="/userprofile/profile/manage-Address">Manage Address</a>
+        <a style="cursor: pointer;" class="option" routerLink="/userprofile/profile/change-password">Change Password</a>
+        <a style="cursor: pointer;" class="option"  (click)="getLogout()">Logout</a>
     </div>
     <div class="content">
         <router-outlet></router-outlet>

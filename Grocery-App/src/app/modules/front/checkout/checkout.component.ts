@@ -15,9 +15,13 @@ export class CheckoutComponent implements OnInit{
 
   constructor(private service:AllItemService, private api:ApiService,private toastr: ToastrService,private cartservice:CartService,private router:Router){
     this.service.cartGrandTotal.subscribe((res)=>{
+
       this.grandTotal=res;
 
     })
+
+    this.username=localStorage.getItem('username')
+    this.tempArray=JSON.parse(localStorage.getItem('cartData'));
   } //constructor ends
 
   grandTotal:any;
@@ -31,8 +35,12 @@ export class CheckoutComponent implements OnInit{
   order_status:any="Nn9l9xhHYQsvNB503C4EAQ==";
   body=this.cartservice.checkout;
 
-
+  username:any;
+  tempArray:any; //this is an array which stores the current value of cartData of local sotorage
   ngOnInit(): void {
+
+    window.scrollTo(0,0);
+
  this.api.userDetails().subscribe(
   {
     next:(res:any)=>{
@@ -90,13 +98,26 @@ export class CheckoutComponent implements OnInit{
       }
     })
 
-  }
+    this.updateCartData(this.username,this.tempArray)
+    localStorage.setItem('cartData',JSON.stringify(this.tempArray))
+
+  }// place order ends
   cancelOrder(){
     this.toastr.success('Ordered cancelled');
     this.router.navigate(['cart'])
   }
+  updateCartData(username: string,  cartData:any) {
+    const userIndex = cartData.findIndex((cartItem) => cartItem.username === username);
+    if (userIndex !== -1) {
+      cartData[userIndex].cart = [];
+    }
+  }
+
+
   //guno address
 // address:any =this.service.deliveryAddress;
 
 //address using api
+
+
 }

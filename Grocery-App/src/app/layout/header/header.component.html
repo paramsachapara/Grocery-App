@@ -63,22 +63,22 @@
       </div>
 <!-- my cart -->
       <div routerLink="cart" class="col-md-2 d-flex text-center justify-content-center align-items-center">
-        <i class="fas fa-shopping-cart fa-2x position-relative me-3">
+        <i style="cursor: pointer;" class="fas fa-shopping-cart fa-2x position-relative me-3">
           <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success "style="width: 1.5rem;height:1rem; font-size: 10px;">
             +{{cartItemCount}} <span class="visually-hidden">unread messages</span>
           </span>
         </i>
 
-        <div>
+        <div style="cursor: pointer;">
           <div>My cart</div>
           <div class="">{{cartTotal | currency}}</div>
         </div>
       </div>
       <div class="col-md-2">
-        <div *ngIf="isUserLogedIn; else logInButton">
+        <div  *ngIf="isUserLogedIn; else logInButton">
           <a class="font-weight-bold color-dark username ms-5" routerLink="userprofile/profile">
 
-            <span class="ms-1 me-1" id="chevron-addon">
+            <span class="ms-1 me-1 " id="chevron-addon">
               <i class="fa-regular fa-user"></i>
             </span>{{userName}}
           </a>

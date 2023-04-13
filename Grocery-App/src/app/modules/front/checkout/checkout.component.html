@@ -8,8 +8,8 @@
 <div >
 
 
-<p class=" text-muted">Select delivery address</p>
-<div class="form-check d-flex justify-content-left " *ngFor="let address of address">
+<p  class=" text-muted">Select delivery address</p>
+<div class="form-check d-flex justify-content-left " *ngFor="let address of address" >
   <input class="form-check-input d-flex align-content-center mt-3 " (change)="getId(address.id)" type="radio" name="address" id="flexRadioDefault">
   <label class="form-check-label ms-2" for="flexRadioDefault" style="width: 50%;">
    {{address.address_line_1}} ,{{address.address_line_2 }}, {{address.area}} ,{{address.city}}, {{address.postal_code}}, {{address.state}} ,{{address.country}}:{{address.tag}}
@@ -20,7 +20,7 @@
 <pre class="d-flex justify-content-left">By placing order you agree
   to terms and condition
 </pre>
-<p>Payment mode: <b>BehaviorSubject</b>
+<p>Payment mode: <b>Cash On Delivery</b>
 </p>
 <p>Grand total: <span><b>{{grandTotal}}</b></span></p>
 <button (click)="cancelOrder()" class="btn btn-secondary rounded-5">cancel</button>

@@ -1,4 +1,6 @@
-<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<ngx-spinner type="ball-scale-multiple">
+
+</ngx-spinner>
 <br>
 <div class="container upper_image">
   <img src="../../../../assets/fruits&veg.png" alt="Snow" style="width:100%;">
@@ -24,7 +26,7 @@
 
 
   <div class="container ind">
-    <div class="card " *ngFor="let product of newDisplay">
+    <div class="card " *ngFor="let product of newDisplay" >
       <a [routerLink]="['productDetails',product.id]">
         <img src="../../../../../assets/oranges.png" class="card-img-top image" alt="">
       </a>      <div   class="card-body">
@@ -34,7 +36,7 @@
           <!-- <span class="card-text storeName">By {{product.seller}}</span> -->
           <div>
               <!-- <span class="discountPrice card-text">{{product.discount| currency}}</span> -->
-              <span class="price card-text">{{product.amount | currency}}</span>
+              <span class="price card-text">Rs. {{ product.amount }}</span>
               <button class="btn btn-success addToCart" (click)="add(product.id)"><i class="fa fa-shopping-cart "></i>Add</button>
           </div>
       </div>

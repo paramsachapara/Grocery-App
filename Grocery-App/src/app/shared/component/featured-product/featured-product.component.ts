@@ -44,7 +44,13 @@ export class FeaturedProductComponent implements OnInit{
       }
     })
 	}
-ngOnInit() {}
+ngOnInit() {
+  this.getData();
+}
+
+getData(){
+
+}
 
   item_list:any
   categories:any

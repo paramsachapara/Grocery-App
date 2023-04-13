@@ -4,7 +4,7 @@
   <h2 class="explore_category_text"><b> Explore Category</b></h2>
 </div>
 <div class="d-flex ">
-  <a *ngFor="let i of total_category" class="category_menu_in_home mx-1" [routerLink]="['category',i.slug]">{{i.title}}</a>
+  <a *ngFor="let i of total_category" class="category_menu_in_home mx-1" [routerLink]="['/category',i.slug]">{{i.title}}</a>
 
 </div>
 </div>

@@ -12,10 +12,18 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class HomeComponent implements OnInit{
 constructor(private service:AllItemService,private api:ApiService,private toastr: ToastrService,private spinner: NgxSpinnerService){
 
-
 }
-  ngOnInit() {
-    window.scrollTo(0,0)
+ngOnInit() {
+
+  // let cartItems = localStorage.getItem('cartItems')
+  // if(cartItems){
+  //   console.warn("yesssssssssssssssss");
+
+  // }
+  // else{
+  //   localStorage.setItem('cartItems',JSON.stringify([]))
+  // }
+  window.scrollTo(0,0)
 
      /** spinner starts on init */
      this.spinner.show();

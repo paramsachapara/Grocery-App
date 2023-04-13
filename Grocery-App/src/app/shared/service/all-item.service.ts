@@ -18,7 +18,11 @@ interface Grocery {
   providedIn: 'root',
 })
 export class AllItemService implements OnInit {
-  cartitems_length=(localStorage.getItem('cartItems')) //// last update
+
+
+
+  cartitems_length=JSON.parse(localStorage.getItem('cartItems'))
+
   Cart_length=this.cartitems_length.length
   constructor(private api:ApiService,private toastr: ToastrService) {
     this.api.getAllProduct().subscribe({

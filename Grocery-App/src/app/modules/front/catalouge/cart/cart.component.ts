@@ -75,7 +75,7 @@ export class CartComponent implements OnInit{
           this.itemsByCategories[item.category].total += item.subtotal;
         }
       });
-    // console.error("products",this.itemsByCategories);
+    console.error("products",this.itemsByCategories);
 
   }
 
